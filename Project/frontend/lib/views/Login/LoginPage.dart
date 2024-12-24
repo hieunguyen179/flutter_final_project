@@ -147,7 +147,7 @@ class _LoginPageState extends State<LoginPage> {
               width: 300,
             ),
             Container(
-              margin: const EdgeInsets.all(16.0),
+              margin: const EdgeInsets.all(12.0),
               child: TextField(
                 controller: nameLoginController,
                 decoration: const InputDecoration(
@@ -155,7 +155,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             Container(
-              margin: const EdgeInsets.all(16.0),
+              margin: const EdgeInsets.all(12.0),
               child: TextField(
                 controller: passwordController,
                 obscureText: true,

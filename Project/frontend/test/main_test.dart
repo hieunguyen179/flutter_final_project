@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 //import 'package:flutter_project/main.dart';
 import '../lib/main.dart';
+import 'widget_test.dart';
 
 void main() {
   testWidgets('MainApp displays Hello World', (WidgetTester tester) async {

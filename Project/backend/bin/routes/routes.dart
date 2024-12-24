@@ -16,6 +16,7 @@ class ProductRouter {
     final router = Router();
 
     router.get('/product', _getProductHandler);
+    router.get('/product/<category>', _getProductCategoryHandler);
     router.post('/product', _addProductHandler);
     router.delete('/product/<id>', _deleteProductHandler);
     router.put('/product/<id>', _updateProductHandler);
@@ -61,6 +62,34 @@ class ProductRouter {
           headers: _headers);
     } catch (e) {
       return Response.internalServerError(
+          body: jsonEncode({'error': e.toString()}));
+    }
+  }
+
+  Future<Response> _getProductCategoryHandler(Request req, String category) async {
+    try {
+      final conn = await service.getConnect();
+      await conn.connect();
+      category = category.replaceAll('_', ' ');
+      var result = await conn.execute("SELECT * FROM products WHERE type = :category", {"category" : category});
+      List<ProductModel> productList = [];
+      for (var row in result.rows) {
+        productList.add(ProductModel(
+            id: int.tryParse(row.colAt(0)!),
+            name: row.colAt(1),
+            type: row.colAt(2),
+            price: int.tryParse(row.colAt(3)!),
+            quantity: int.tryParse(row.colAt(4)!),
+            size: row.colAt(5),
+            image_data: row.colAt(6)));
+      }
+      conn.close();
+      return Response.ok(
+          jsonEncode(productList.map((product) => product.toMap()).toList()),
+          headers: _headers);
+    }
+    catch(e) {
+       return Response.internalServerError(
           body: jsonEncode({'error': e.toString()}));
     }
   }

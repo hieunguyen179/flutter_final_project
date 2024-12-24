@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import '../../model/ProductModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:http/http.dart' as http;
@@ -9,6 +9,7 @@ class DetaiProduct extends StatefulWidget {
   String type;
   String size;
   String id;
+  //ProductModel product = ProductModel();
   DetaiProduct({super.key, required this.name, required this.type, required this.size, required this.id});
 
   @override

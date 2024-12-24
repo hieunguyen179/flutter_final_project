@@ -59,7 +59,7 @@ class _AddProductState extends State<AddProduct> {
     ProductModel newProduct = ProductModel(
       id: 1,
       name: nameController.text,
-      type: 'so mi',
+      type: typeController.text,
       price: 10000,
       quantity: int.parse(quantityController.text),
       size: sizeController.text,
